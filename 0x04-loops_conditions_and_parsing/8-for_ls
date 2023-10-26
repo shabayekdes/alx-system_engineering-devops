@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# displays the content of the current working directory.
+
+for file in *; do
+  if [[ "$file" != .* ]]; then
+    name=$(echo "$file" | sed 's/^[^-]*-//')
+    echo "$name"
+  fi
+done

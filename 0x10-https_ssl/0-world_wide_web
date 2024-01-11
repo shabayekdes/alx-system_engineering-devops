@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Bash script displays DNS records: record type, IP, subdomains
+
+subdomains_all=( "www" "lb-01" "web-01" "web-02" )
+
+print_record ()
+{
+    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+}
+
+if [ -z "$2" ]; then
+   for subs in subdomains_all
+   do
+       print_record "$1" "$subs"
+   done
+else
+    print_record "$1" "$2"
+fi

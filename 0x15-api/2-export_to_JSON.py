@@ -5,8 +5,8 @@ information about his/her TODO list progress
 and exports data in the JSON format.
 """
 
-import requests
 import json
+import requests
 from sys import argv
 
 
